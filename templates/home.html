@@ -1,0 +1,34 @@
+<p>pozdravljeni {{username}} {{neki}}</p>
+<button onclick="Logout()">Odjava</button>
+
+{% if jelogiran %}
+    <p>ikone se prikazejo ce je uporabnik logiran</p>
+{% endif %}
+
+<script>
+
+
+    async function Logout() {
+        try {
+            const response = await fetch(
+                '/logout',
+                { 
+                    method: 'POST'
+                });
+            
+            if (!response.ok) {
+                /*const errorMsg = "Napaka pri prijavi.";
+                document.getElementById('error-msg').innerText = errorMsg;*/
+                return;
+            }
+
+            const json = await response.json();
+
+            if (json.odjavaUspela) {
+                window.location.href = '/';
+            } 
+        } catch (error) {
+            console.error(error.message);
+        }
+    }
+</script>
