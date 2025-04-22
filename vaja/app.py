@@ -23,6 +23,17 @@ def home():
     if username == '':
         return redirect('/login')
     return render_template('home.html', username=username, jelogiran=True)
+    
+@app.route('/profile')
+def profile():
+    if 'username' not in session:
+        return redirect('/')
+    
+    return render_template(
+        'profile.html',
+        username=session['username'],
+        userType=session.get('userType', 'navaden')
+    )
 
 @app.route('/login', methods=['GET'])
 def login_page():
@@ -45,14 +56,17 @@ def login_post():
 @app.route('/signup', methods=['GET', 'POST'])
 def signup():
     if request.method == 'POST':
-        username = request.form['username']
+        username = request.form['username'].strip()
         password = request.form['password']
+
+        if len(username) < 3 or len(password) < 4:
+            return 'Uporabniško ime in geslo morata imeti dovolj znakov.', 400
 
         success = add_user(username, password)
         if success:
             return redirect('/login')
         else:
-            return 'Uporabniško ime že obstaja!', 400  # Lahko dodaš boljšo obravnavo
+            return 'Uporabniško ime že obstaja!', 400
 
     return render_template('signup.html')
 
@@ -60,6 +74,17 @@ def signup():
 def logout():
     session.clear()
     return jsonify({'odjavaUspela': True})
+    
+@app.route('/profile/delete', methods=['POST'])
+def delete_account():
+    if 'username' not in session:
+        return redirect('/')
+    
+    User = Query()
+    db.remove(User.username == session['username'])
+    session.clear()
+
+    return redirect('/')
 
 if __name__ == '__main__':
     app.run(debug=True)
