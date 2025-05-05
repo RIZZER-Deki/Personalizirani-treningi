@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="sl">
+<head>
+    <meta charset="UTF-8">
+    <title>Prijava</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 40px;
+            background-color: #f4f4f4;
+        }
+        .login-container {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            max-width: 400px;
+            margin: auto;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        input {
+            padding: 10px;
+            margin: 10px 0;
+            width: 100%;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        button {
+            padding: 10px;
+            width: 100%;
+            background-color: #5cb85c;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        #error-msg {
+            color: red;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="login-container">
+        <h2>Prijava</h2>
+        <input type="text" id="username" placeholder="Uporabniško ime">
+        <input type="password" id="password" placeholder="Geslo">
+        <button onclick="login()">Prijavi se</button>
+        <div id="error-msg"></div>
+    </div>
+
+    <script>
+
+
+        async function login() {
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+
+            try {
+                const response = await fetch(
+                    '/login',
+                    { 
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ username, password })});
+                
+                if (!response.ok) {
+                    const errorMsg = "Napaka pri prijavi.";
+                    document.getElementById('error-msg').innerText = errorMsg;
+                    return;
+                }
+
+                const json = await response.json();
+
+                if (!json.prijavaUspela) {
+                    const errorMsg = json.error;
+                    document.getElementById('error-msg').innerText = errorMsg;
+                    return;
+                } 
+                
+                window.location.href = '/';
+            } catch (error) {
+                console.error(error.message);
+            }
+        }
+    </script>
+</body>
+</html>
