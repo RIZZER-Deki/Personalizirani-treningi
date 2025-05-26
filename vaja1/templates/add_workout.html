@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% block title %}Dodaj nov trening{% endblock %}
+
+{% block content %}
+<h1>Dodaj nov trening</h1>
+
+<form method="POST" action="/workouts/new">
+    <label for="title">Naslov treninga:</label><br>
+    <input type="text" id="title" name="title" required><br><br>
+
+    <label for="description">Opis:</label><br>
+    <textarea id="description" name="description" rows="4" required></textarea><br><br>
+
+    <button type="submit">Shrani</button>
+</form>
+
+<a href="/workouts">Nazaj na treninge</a>
+{% endblock %}
