@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="sl">
+<head>
+  <meta charset="UTF-8">
+  <title>Uredi trening</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: linear-gradient(to bottom, #0066cc, #ffffff);
+    }
+
+    nav {
+      background-color: #003366;
+      padding: 10px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    nav .links a, nav form button {
+      color: white;
+      background: none;
+      border: none;
+      text-decoration: none;
+      margin-left: 15px;
+      font-weight: bold;
+      cursor: pointer;
+      font-size: 16px;
+    }
+
+    nav .links a:hover, nav form button:hover {
+      text-decoration: underline;
+    }
+
+    .container {
+      max-width: 800px;
+      margin: 40px auto;
+      background-color: white;
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+    }
+
+    h2 {
+      color: #003366;
+      margin-bottom: 20px;
+    }
+
+    form {
+      display: flex;
+      flex-direction: column;
+    }
+
+    label {
+      font-weight: bold;
+      margin-top: 15px;
+    }
+
+    input[type="text"], textarea {
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      margin-top: 5px;
+      font-size: 16px;
+    }
+
+    textarea {
+      resize: vertical;
+      height: 120px;
+    }
+
+    button {
+      margin-top: 20px;
+      padding: 10px;
+      background-color: #0066cc;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #004999;
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <div class="brand">
+      <a href="/dashboard" style="color:white; text-decoration:none; font-weight:bold;">Fit-app</a>
+    </div>
+    <div class="links">
+      <a href="/dashboard">Domov</a>
+      <a href="/workouts">Treningi</a>
+      <a href="/workouts/new">Dodaj trening</a>
+      <a href="/profile">Profil</a>
+      <form action="/logout" method="post" style="display:inline;">
+        <button type="submit">Odjava</button>
+      </form>
+    </div>
+  </nav>
+
+  <div class="container">
+    <h2>✏️ Uredi trening</h2>
+    <form method="POST">
+      <label for="title">Naslov treninga</label>
+      <input type="text" id="title" name="title" value="{{ workout.title }}" required>
+
+      <label for="description">Opis treninga</label>
+      <textarea id="description" name="description" required>{{ workout.description }}</textarea>
+
+      <button type="submit">Shrani spremembe</button>
+    </form>
+  </div>
+
+</body>
+</html>

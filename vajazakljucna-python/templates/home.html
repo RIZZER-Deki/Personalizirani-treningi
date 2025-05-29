@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="sl">
+<head>
+  <meta charset="UTF-8">
+  <title>Nadzorna plošča</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: linear-gradient(to bottom, #0066cc, #ffffff);
+    }
+
+    nav {
+      background-color: #003366;
+      padding: 10px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    nav .links a, nav form button {
+      color: white;
+      background: none;
+      border: none;
+      text-decoration: none;
+      margin-left: 15px;
+      font-weight: bold;
+      cursor: pointer;
+      font-size: 16px;
+    }
+
+    nav .links a:hover, nav form button:hover {
+      text-decoration: underline;
+    }
+
+    .container {
+      padding: 30px;
+      max-width: 900px;
+      margin: 0 auto;
+      background-color: white;
+      border-radius: 10px;
+      margin-top: 40px;
+      box-shadow: 0 0 15px rgba(0,0,0,0.1);
+    }
+
+    .dashboard-links {
+      margin: 20px 0;
+    }
+
+    .dashboard-links a {
+      margin-right: 15px;
+      color: #0066cc;
+      text-decoration: none;
+      font-size: 18px;
+    }
+
+    .dashboard-links a:hover {
+      text-decoration: underline;
+    }
+
+    h2 {
+      color: #003366;
+    }
+
+    h3 {
+      margin-top: 30px;
+      color: #005599;
+    }
+
+    p {
+      font-size: 16px;
+      color: #333;
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <div class="brand">
+      <a href="/dashboard" style="color:white; text-decoration:none; font-weight:bold;">Fit-app</a>
+    </div>
+    <div class="links">
+      <a href="/dashboard">Domov</a>
+      <a href="/workouts">Treningi</a>
+      <a href="/workouts/new">Dodaj trening</a>
+      <a href="/profile">Profil</a>
+      <form action="/logout" method="post" style="display:inline;">
+        <button type="submit">Odjava</button>
+      </form>
+    </div>
+  </nav>
+
+  <div class="container">
+    <h2>Dobrodošel, {{ username }}!</h2>
+
+    <div class="dashboard-links">
+      <a href="/workouts">📋 Moji treningi</a>
+      <a href="/workouts/new">➕ Dodaj trening</a>
+      <a href="/profile">👤 Moj profil</a>
+    </div>
+
+    <hr>
+
+    <h3>Statistika</h3>
+    <p>Skupno število treningov: <strong>{{ stats.total_workouts }}</strong></p>
+  </div>
+
+</body>
+</html>

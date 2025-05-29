@@ -1,0 +1,149 @@
+
+<!DOCTYPE html>
+<html lang="sl">
+<head>
+  <meta charset="UTF-8">
+  <title>Treningi</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: linear-gradient(to bottom, #0066cc, #ffffff);
+    }
+
+    nav {
+      background-color: #003366;
+      padding: 10px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    nav .links a, nav form button {
+      color: white;
+      background: none;
+      border: none;
+      text-decoration: none;
+      margin-left: 15px;
+      font-weight: bold;
+      cursor: pointer;
+      font-size: 16px;
+    }
+
+    nav .links a:hover, nav form button:hover {
+      text-decoration: underline;
+    }
+
+    .container {
+      max-width: 900px;
+      margin: 40px auto;
+      background-color: white;
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+    }
+
+    h2 {
+      color: #003366;
+      margin-bottom: 20px;
+    }
+
+    .workout {
+      border-bottom: 1px solid #ccc;
+      padding: 15px 0;
+    }
+
+    .workout h3 {
+      margin: 0;
+      color: #0066cc;
+    }
+
+    .workout p {
+      margin: 5px 0 10px 0;
+    }
+
+    .workout a, .workout form button {
+      margin-right: 10px;
+      text-decoration: none;
+      color: #0066cc;
+      background: none;
+      border: none;
+      font-size: 15px;
+      cursor: pointer;
+    }
+
+    .workout a:hover, .workout form button:hover {
+      text-decoration: underline;
+    }
+
+    form.search {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 20px;
+    }
+
+    form.search input[type="text"] {
+      flex: 1;
+      padding: 8px;
+      font-size: 16px;
+    }
+
+    form.search button {
+      padding: 8px 12px;
+      background-color: #0066cc;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    form.search button:hover {
+      background-color: #004999;
+    }
+
+  </style>
+</head>
+<body>
+
+  <nav>
+    <div class="brand">
+      <a href="/dashboard" style="color:white; text-decoration:none; font-weight:bold;">Fit-app</a>
+    </div>
+    <div class="links">
+      <a href="/dashboard">Domov</a>
+      <a href="/workouts">Treningi</a>
+      <a href="/workouts/new">Dodaj trening</a>
+      <a href="/profile">Profil</a>
+      <form action="/logout" method="post" style="display:inline;">
+        <button type="submit">Odjava</button>
+      </form>
+    </div>
+  </nav>
+
+  <div class="container">
+    <h2>📋 Seznam treningov</h2>
+
+    <form class="search" method="get" action="/workouts">
+      <input type="text" name="search" placeholder="Išči po naslovu..." value="{{ request.args.get('search', '') }}">
+      <button type="submit">Išči</button>
+    </form>
+
+    {% if workouts %}
+      {% for workout in workouts %}
+        <div class="workout">
+          <h3>{{ workout.title }}</h3>
+          <p>{{ workout.description }}</p>
+          <a href="/workouts/edit/{{ workout.doc_id }}">Uredi</a>
+          <form method="post" action="/api/workouts/delete/{{ workout.doc_id }}" style="display:inline;">
+            <button type="submit">Izbriši</button>
+          </form>
+        </div>
+      {% endfor %}
+    {% else %}
+      <p>Ni še nobenega treninga.</p>
+    {% endif %}
+  </div>
+
+</body>
+</html>

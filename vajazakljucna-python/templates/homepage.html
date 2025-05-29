@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="sl">
+<head>
+  <meta charset="UTF-8">
+  <title>Dobrodošel</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      height: 100vh;
+      font-family: Arial, sans-serif;
+      background: linear-gradient(to bottom, #0066cc, #ffffff);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .navbar {
+      display: flex;
+      justify-content: flex-end;
+      padding: 20px;
+      gap: 12px;
+    }
+
+    .navbar a {
+      background-color: white;
+      color: #0066cc;
+      padding: 10px 20px;
+      border-radius: 6px;
+      text-decoration: none;
+      font-weight: bold;
+      transition: background-color 0.3s ease;
+    }
+
+    .navbar a:hover {
+      background-color: #d0e8ff;
+    }
+
+    .hero {
+      text-align: left;
+      margin: 80px;
+      background-color: rgba(255, 255, 255, 0.9);
+      padding: 40px;
+      border-radius: 12px;
+      max-width: 500px;
+    }
+
+    .hero h1 {
+      font-size: 36px;
+      color: #003366;
+      margin-bottom: 10px;
+    }
+
+    .hero p {
+      font-size: 18px;
+      color: #333;
+    }
+
+    @media (max-width: 768px) {
+      .hero {
+        margin: 20px;
+        padding: 20px;
+      }
+
+      .hero h1 {
+        font-size: 28px;
+      }
+
+      .hero p {
+        font-size: 16px;
+      }
+
+      .navbar {
+        flex-direction: column;
+        align-items: flex-end;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="navbar">
+    <a href="/login">Prijava</a>
+    <a href="/signup">Registracija</a>
+  </div>
+
+  <div class="hero">
+    <h1>Dobrodošel v Fit-app</h1>
+    <p>Začni svojo fitnes pot z enostavnim načrtovanjem treningov. Prijavi se ali ustvari račun zdaj!</p>
+  </div>
+</body>
+</html>

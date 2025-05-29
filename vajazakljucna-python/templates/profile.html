@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="sl">
+<head>
+  <meta charset="UTF-8">
+  <title>Uporabniški profil</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: linear-gradient(to bottom, #0066cc, #ffffff);
+    }
+
+    nav {
+      background-color: #003366;
+      padding: 10px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    nav .links a, nav form button {
+      color: white;
+      background: none;
+      border: none;
+      text-decoration: none;
+      margin-left: 15px;
+      font-weight: bold;
+      cursor: pointer;
+      font-size: 16px;
+    }
+
+    nav .links a:hover, nav form button:hover {
+      text-decoration: underline;
+    }
+
+    .container {
+      max-width: 800px;
+      margin: 40px auto;
+      background-color: white;
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+    }
+
+    h2 {
+      color: #003366;
+      margin-bottom: 20px;
+    }
+
+    form {
+      margin-bottom: 30px;
+    }
+
+    label {
+      display: block;
+      margin-top: 15px;
+      margin-bottom: 5px;
+      font-weight: bold;
+    }
+
+    input[type="password"] {
+      width: 100%;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+
+    button {
+      margin-top: 15px;
+      padding: 10px 20px;
+      background-color: #0066cc;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #004999;
+    }
+
+    .danger {
+      background-color: #cc0000;
+      margin-top: 10px;
+    }
+
+    .danger:hover {
+      background-color: #990000;
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <div class="brand">
+      <a href="/dashboard" style="color:white; text-decoration:none; font-weight:bold;">Fit-app</a>
+    </div>
+    <div class="links">
+      <a href="/dashboard">Domov</a>
+      <a href="/workouts">Treningi</a>
+      <a href="/workouts/new">Dodaj trening</a>
+      <a href="/profile">Profil</a>
+      <form action="/logout" method="post" style="display:inline;">
+        <button type="submit">Odjava</button>
+      </form>
+    </div>
+  </nav>
+
+  <div class="container">
+    <h2>👤 Profil uporabnika {{ username }}</h2>
+
+    <p>Tip uporabnika: <strong>{{ userType }}</strong></p>
+
+    <form action="/profile/change-password" method="post">
+      <label for="new_password">Spremeni geslo</label>
+      <input type="password" id="new_password" name="new_password" placeholder="Novo geslo" required>
+      <button type="submit">Shrani novo geslo</button>
+    </form>
+
+    <form action="/profile/delete" method="post">
+      <button type="submit" class="danger" onclick="return confirm('Ali res želiš izbrisati račun?')">🗑️ Izbriši račun</button>
+    </form>
+  </div>
+
+</body>
+</html>

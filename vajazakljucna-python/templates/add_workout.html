@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="sl">
+<head>
+  <meta charset="UTF-8">
+  <title>Dodaj nov trening</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      background: linear-gradient(to bottom, #007acc, #ffffff);
+    }
+
+    nav {
+      background-color: #003366;
+      padding: 10px 20px;
+    }
+
+    nav a, nav form button {
+      color: white;
+      text-decoration: none;
+      margin-right: 15px;
+      background: none;
+      border: none;
+      font-weight: bold;
+      cursor: pointer;
+      font-size: 16px;
+    }
+
+    nav a:hover, nav form button:hover {
+      text-decoration: underline;
+    }
+
+    .container {
+      max-width: 700px;
+      margin: 40px auto;
+      background-color: white;
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+    }
+
+    h2 {
+      color: #003366;
+    }
+
+    form label {
+      display: block;
+      margin-top: 15px;
+      font-weight: bold;
+    }
+
+    form input[type="text"],
+    form select,
+    form textarea {
+      width: 100%;
+      padding: 10px;
+      margin-top: 5px;
+      font-size: 16px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+
+    form button {
+      margin-top: 20px;
+      padding: 10px 20px;
+      background-color: #007acc;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+
+    form button:hover {
+      background-color: #005c99;
+    }
+
+    .back-link {
+      display: inline-block;
+      margin-top: 20px;
+      color: #007acc;
+      text-decoration: none;
+    }
+
+    .back-link:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <a href="/dashboard">Domov</a>
+    <a href="/workouts">Treningi</a>
+    <a href="/profile">Profil</a>
+    <form action="/logout" method="post" style="display:inline;">
+      <button type="submit">Odjava</button>
+    </form>
+  </nav>
+
+  <div class="container">
+    <h2>Dodaj nov trening</h2>
+    <form method="POST">
+      <label for="title">Naslov:</label>
+      <input type="text" id="title" name="title" required>
+
+      <label for="split">Workout split:</label>
+      <select name="split" id="split" required>
+        <option value="push_pull_legs">Push/Pull/Legs</option>
+        <option value="full_body">Full Body</option>
+        <option value="upper_lower">Upper/Lower</option>
+        <option value="bro_split">Bro Split</option>
+      </select>
+
+      <label for="description">Opis:</label>
+      <textarea id="description" name="description" rows="5" required></textarea>
+
+      <button type="submit">Shrani</button>
+    </form>
+
+    <a class="back-link" href="/workouts">← Nazaj</a>
+  </div>
+
+</body>
+</html>
+

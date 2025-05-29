@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="sl">
+<head>
+    <meta charset="UTF-8">
+    <title>Fit-App</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+    body {
+        margin: 0;
+        font-family: Arial, sans-serif;
+        background: linear-gradient(to bottom, #e6f0ff, #ffffff);
+    }
+    nav {
+        background-color: #0056b3;
+        padding: 15px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+    nav a, nav button {
+        color: white;
+        text-decoration: none;
+        background: none;
+        border: none;
+        font-weight: bold;
+        cursor: pointer;
+        font-size: 16px;
+        margin-left: 15px;
+    }
+    nav a:hover, nav button:hover {
+        text-decoration: underline;
+        opacity: 0.85;
+    }
+    .container {
+        max-width: 800px;
+        margin: 40px auto;
+        padding: 30px;
+        background-color: #ffffff;
+        border-radius: 12px;
+        box-shadow: 0 6px 12px rgba(0,0,0,0.1);
+    }
+    </style>
+
+</head>
+<body>
+
+    <nav>
+        <div class="nav-left">
+            <a href="/">Fit-App</a>
+        </div>
+        <div class="nav-right">
+            {% if jelogiran %}
+                <a href="/dashboard">Domov</a>
+                <a href="/workouts">Treningi</a>
+                <a href="/workouts/new">Dodaj trening</a>
+                <a href="/profile">Profil</a>
+                <form action="/logout" method="post" style="display:inline;">
+                    <button type="submit">Odjava</button>
+                </form>
+            {% else %}
+                <a href="/login">Prijava</a>
+                <a href="/signup">Registracija</a>
+            {% endif %}
+        </div>
+    </nav>
+
+    <div class="container">
+ 
+        <h2>Dobrodošel v Fit-App!</h2>
+        <p></p>
+    </div>
+
+</body>
+</html>
